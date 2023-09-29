@@ -1,10 +1,10 @@
 package com.example.sendmessagetotelegram
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sendmessagetotelegram.databinding.ActivityMainBinding
+import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,14 +20,14 @@ class MainActivity : AppCompatActivity() {
         binding.btnSend.setOnClickListener{
             if(binding.etMessage.text != null) {
                 try {
-                    val telegramIntent = Intent(Intent.ACTION_VIEW)
-                    //telegramIntent.action = Intent.ACTION_SEND
-                    telegramIntent.data = Uri.parse("http://telegram.me/aixend")
-                    telegramIntent.putExtra(Intent.EXTRA_TEXT, binding.etMessage.text)
-                    //telegramIntent.type = "text/plain"
-                    startActivity(telegramIntent)
-                } catch (e: Exception) {
-                    // error message
+                    val appName = "org.telegram.messenger"
+                    val tIntent = Intent(Intent.ACTION_SEND)
+                    tIntent.type = "text/plain"
+                    tIntent.setPackage(appName)
+                    tIntent.putExtra(Intent.EXTRA_TEXT, binding.etMessage.text)
+                    startActivity(tIntent)
+                } catch (e : Exception){
+                    //todo
                 }
             }
         }
