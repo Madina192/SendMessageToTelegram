@@ -2,6 +2,7 @@ package com.example.sendmessagetotelegram
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sendmessagetotelegram.databinding.ActivityMainBinding
 import java.lang.Exception
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                     tIntent.putExtra(Intent.EXTRA_TEXT, binding.etMessage.text)
                     startActivity(tIntent)
                 } catch (e : Exception){
-                    //todo
+                    Toast.makeText(this, "Telegram app is not installed", Toast.LENGTH_LONG).show();
                 }
             }
         }
